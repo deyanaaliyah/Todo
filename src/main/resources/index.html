@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Dat19v1 ToDo Liste med API</title>
+</head>
+<body>
+
+<div class="container">
+    <div id="myDIV" class="header">
+        <h2 style="margin:5px">ToDo List Using API</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+    </div>
+
+    <ul id="myUL">
+        <!--<li>Walk the dog</li>
+        <li>Watch TV</li>
+        <li>Program a cat</li>-->
+    </ul>
+</div>
+
+<!-- SCRIPT-->
+<script>
+
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/todo"
+    });
+
+
+
+    // -------------------------------
+    // CREATE
+    function newElement() {
+        // Create new variables that connects to html-tags
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+
+        li.appendChild(t);
+
+        // This creates everything we just instantiated
+        document.getElementById("myUL").appendChild(li);
+
+        // Delete button
+        var span = document.createElement("span");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    }
+    // -------------------------------
+
+</script>
+
+</body>
